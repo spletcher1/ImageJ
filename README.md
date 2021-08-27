@@ -14,7 +14,7 @@ In this repository you will find the latest ImageJ scripts used by the Pletcher 
     4. Click on the *Close* button.
     5. Click on the *Apply changes* button.
 4. Install the [RatioPlus](https://imagej.nih.gov/ij/plugins/ratio-plus.html) plugin by following the directions on the linked page.
-4. Restart ImageJ and the scripts can be accessed under the new PletcherLab menu item.
+4. Restart ImageJ and the scripts can be accessed under the new *PletcherLab* menu item.
 
 
 
