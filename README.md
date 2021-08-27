@@ -4,11 +4,17 @@ In this repository you will find the latest ImageJ scripts used by the Pletcher 
 ### Version 1.0-beta (August 27, 2021)
 
 #### **Installation**
-
 1. Create folder called ‘*PletcherLab*’ in the *plugins/scripts/* folder within the location of the Fiji/ImageJ app.
     a. Note, copy to the scripts folder that is in the **plugins** folder, not the scripts folder that is in the ImageJ installation folder.
 2.	Copy all ‘.ijm’ files to the *PletcherLab* directory.
-3.  Restart ImageJ and the scripts can be accessed under the new PletcherLab menu item.
+3.  Install the *pub montag* plugin by activating the TEM update site.
+    1. Click on *Help>Update*.
+    2. After the updater has search for available updates and the larger window has opened, click on the *Manage update sites* button.
+    3. Scroll down and check the check box next to the TEM site.
+    4. Click on the *Close* button.
+    5. Click on the *Apply changes* button.
+4. Install the [RatioPlus](https://imagej.nih.gov/ij/plugins/ratio-plus.html) plugin by following the directions on the linked page.
+4. Restart ImageJ and the scripts can be accessed under the new PletcherLab menu item.
 
 
 
@@ -66,7 +72,7 @@ In this repository you will find the latest ImageJ scripts used by the Pletcher 
 7.  As additional images/ROIs are defined, the *Measure* results will be appended to the *Results* window.  You can terminate the script by a right mouse click or by closing all of the images.  When terminated, a dialog window will notify you that the script has ended, and the data in the *Results* window will be automatically copied to the clipboard.  At this point you should switch to Excel or a similar program and paste your results.
       1. Note that the second column will indicate the file from which the measure results were obtained, and the sixth column will indicate the channel, if multiple channels/slices were quantified. The fourth column contains the mean pixel value in the ROI and is the measure of interest.
       2. If you receive an error dialog about window focus, you will need to restart the script.  Make sure to check the results table for the files that were successfully saved.
-      3. Tip. I find it easiest to run this scripts on images from single treatments at a time.  First I open all the images from, say, Group 1.  Then analyze the ROI and copy the data to excel.  Then I repeat this procedure for the other groups. When doing this, remember to clear the results table between groups.
+      3. Tip. I find it easiest to run this scripts on images from single treatments at a time.  First I open all the images from, say, Group 1.  Then analyze the ROI and copy the data to excel.  Then I repeat this procedure for the other groups. When doing this, remember to clear the *Results* table between groups.
     
 
 
