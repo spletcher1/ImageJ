@@ -17,41 +17,41 @@ In this repository you will find the latest ImageJ scripts used by the Pletcher 
 1.  Click on the *PletcherLab>Analyze Campari RatioPlus* menu item.
 2. Set the parameters for the analysis. 
     1. Specify the directory in which the stack files are located. This directory must not have a subdirectory called "Projections" located within.  If so, rename it.
-    b. Choose the starting and ending slices between which projections will be calculated. They do not need to be adjusted to include all stacks.  If ending slice is larger than the number of available slices, the images up to and including the last slice will be used.
-    c. Choose the type of projection that will be used to merge the information in the chosen slices.
-    d. Choose a background rolling window over which a local background correction will be applied.  If this is specified as zero, no background subtraction will be applied.
-    e. Choose the percentage of saturated pixels for contrast enhancement for the channels in the stack.  If this is specified as zero, no contrast enhancement will be applied.
-    f. Choose the percentage of saturated pixels for contrast enhancement specifically for the ratio projection.  If this is specified as zero, no contrast enhancement will be applied.
-    g. Specify the file identifier for the stack files.
+    2. Choose the starting and ending slices between which projections will be calculated. They do not need to be adjusted to include all stacks.  If ending slice is larger than the number of available slices, the images up to and including the last slice will be used.
+    3. Choose the type of projection that will be used to merge the information in the chosen slices.
+    4. Choose a background rolling window over which a local background correction will be applied.  If this is specified as zero, no background subtraction will be applied.
+    5. Choose the percentage of saturated pixels for contrast enhancement for the channels in the stack.  If this is specified as zero, no contrast enhancement will be applied.
+    6. Choose the percentage of saturated pixels for contrast enhancement specifically for the ratio projection.  If this is specified as zero, no contrast enhancement will be applied.
+    7. Specify the file identifier for the stack files.
 3. Click OK.
     
 
 ##### Script Mechanics
 1. First, this script will identify all stack files (by file extension defined in '2g') in the specified directory (as specified in '2a') and a projection image for each channel according to the following procedure.
-    a. Open the stack file in ImageJ (autoscaling, hyperstack order XYCZT)
-    b. Execute a median filter with a pixel radius of 5 pixels on all slices to remove noise.
-    c. Execute the projection of the chosen type (as specified in 'c') over the chosen slices (as specified in '2b').  Do this for each channel.
-    d. If the rolling background window > 0 (as specified in '2d'), then the Subtract Background function is applied to the projection (all channels) with the specified window.
-    e. If the contrast enhancement for channels > 0 (as speficied in '2e') then the Enhance Contrast function is applied to the projection (all channels) with the specified saturation.
-    f. The projection is saved in the '*Projections*' subdirectory. If there are multiple channels in the original stack file, there will be the same number of channels in the projection.
-    g. Close the original stack file.
+    1. Open the stack file in ImageJ (autoscaling, hyperstack order XYCZT)
+    2. Execute a median filter with a pixel radius of 5 pixels on all slices to remove noise.
+    3. Execute the projection of the chosen type (as specified in 'c') over the chosen slices (as specified in '2b').  Do this for each channel.
+    4. If the rolling background window > 0 (as specified in '2d'), then the Subtract Background function is applied to the projection (all channels) with the specified window.
+    5. If the contrast enhancement for channels > 0 (as speficied in '2e') then the Enhance Contrast function is applied to the projection (all channels) with the specified saturation.
+    6. The projection is saved in the '*Projections*' subdirectory. If there are multiple channels in the original stack file, there will be the same number of channels in the projection.
+    7. Close the original stack file.
     
 2. Second, for each of the stack files identified in step 1, the script will next create projections that are formed from the ratio (slice by slice) of channel 2 to channel 1.  This is meant to be used for CaMPARI imaging where channel 1 is GFP and channel 2 is RFP.
-    a. Open the stack file in ImageJ (autoscaling, hyperstack order XYCZT)
-    b. Execute a median filter with a pixel radius of 5 pixels on all slices to remove noise.
-    c. Split the channels.
-    d. Execute the *Ratio Plus* plugin (background1=10 clipping_value1=20 background2=10 clipping_value2=20 multiplication=2) to create a stack of images formed by the ratio of each slice from each of the two channels, where the ratio is Channel 2/Channel 1.
-    e. Execute a '*sum slices*' projection over the chosen slices (as specified in '2b').
-    f. If the contrast enhancement for channels > 0 (as speficied in '2e'), then the Enhance Contrast function is applied to the projection with the specified saturation.
-    g.  If the rolling background window > 0 (as specified in '2d'), then the Subtract Background function is applied to the projection with the specified window.
-    h.  The projection (now a single channel) is saved in the '*Projections/Ratio*' subdirectory. 
-    i.  Close the original stack file.
+    1. Open the stack file in ImageJ (autoscaling, hyperstack order XYCZT)
+    2. Execute a median filter with a pixel radius of 5 pixels on all slices to remove noise.
+    3. Split the channels.
+    4. Execute the *Ratio Plus* plugin (background1=10 clipping_value1=20 background2=10 clipping_value2=20 multiplication=2) to create a stack of images formed by the ratio of each slice from each of the two channels, where the ratio is Channel 2/Channel 1.
+    5. Execute a '*sum slices*' projection over the chosen slices (as specified in '2b').
+    6. If the contrast enhancement for channels > 0 (as speficied in '2e'), then the Enhance Contrast function is applied to the projection with the specified saturation.
+    7.  If the rolling background window > 0 (as specified in '2d'), then the Subtract Background function is applied to the projection with the specified window.
+    8.  The projection (now a single channel) is saved in the '*Projections/Ratio*' subdirectory. 
+    9.  Close the original stack file.
     
 3. Third, the script will isolate the individual channels into separate files and create a montage image for easy viewing of the data.
-    a. For each projection file in the '*Projections*' subdirectory, the channels are separated and each corresponding image is saved in either the '*Projections/Green*' (for Channel 1) or '*Projections/Red*' (for Channel 2) subdirectory.
-    b. At this point there will be three folders (*Green*, *Red*, and *Ratio*).  In each folder there will be a single image for each of the original stacks, corresponding to the processed and projected data.
-    c. In each directory, a montage of all the images in that directory will be made using the '*pub montag*' plugin.  The first time this is executed, the user must input the number of rows and columns desired for the montage.  It is recommended that a number of columns be chosen to divide up the treatments appropriately. The Close Stack After option should be selected.  An image scaling factor and image with of 2 works well; the 'no border' option should be chosen; and the file name should be checked to label each image.
-    d. Click Ok and then Ok again to run each of the three montages.
+    1. For each projection file in the '*Projections*' subdirectory, the channels are separated and each corresponding image is saved in either the '*Projections/Green*' (for Channel 1) or '*Projections/Red*' (for Channel 2) subdirectory.
+    2. At this point there will be three folders (*Green*, *Red*, and *Ratio*).  In each folder there will be a single image for each of the original stacks, corresponding to the processed and projected data.
+    3. In each directory, a montage of all the images in that directory will be made using the '*pub montag*' plugin.  The first time this is executed, the user must input the number of rows and columns desired for the montage.  It is recommended that a number of columns be chosen to divide up the treatments appropriately. The Close Stack After option should be selected.  An image scaling factor and image with of 2 works well; the 'no border' option should be chosen; and the file name should be checked to label each image.
+    4. Click Ok and then Ok again to run each of the three montages.
 
     
 #### **CaMPARI ROI Analysis Script**
