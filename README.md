@@ -16,7 +16,7 @@ In this repository you will find the latest ImageJ scripts used by the Pletcher 
 ##### Usage
 1.  Click on the *PletcherLab>Analyze Campari RatioPlus* menu item.
 2. Set the parameters for the analysis. 
-    a. Specify the directory in which the stack files are located. This directory must not have a subdirectory called "Projections" located within.  If so, rename it.
+        a. Specify the directory in which the stack files are located. This directory must not have a subdirectory called "Projections" located within.  If so, rename it.
     b. Choose the starting and ending slices between which projections will be calculated. They do not need to be adjusted to include all stacks.  If ending slice is larger than the number of available slices, the images up to and including the last slice will be used.
     c. Choose the type of projection that will be used to merge the information in the chosen slices.
     d. Choose a background rolling window over which a local background correction will be applied.  If this is specified as zero, no background subtraction will be applied.
