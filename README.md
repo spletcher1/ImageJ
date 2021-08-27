@@ -63,7 +63,7 @@ In this repository you will find the latest ImageJ scripts used by the Pletcher 
 #### **CaMPARI ROI Analysis Script**
 ##### Usage
 1.  Open the images that you would like to analyze in ImageJ by highlighting them in windows explorer and dragging the files onto the ImageJ application.  This script will work for single images as well as for files with multiple slices/channels.  
-      a. For CaMPARI analysis, you would focus on the files in the "*Projections*" directory to analyze both green and red channels simultaneously.
+    1. For CaMPARI analysis, you would focus on the files in the "*Projections*" directory to analyze both green and red channels simultaneously.
 2.  Click on the *PletcherLab>Measure On Mouse Click* menu item.
 3.  Choose whether your ROI will be a rectangle or circle. Click Ok.
 4.  Define the size of the ROI according to width/height or radius. Click Ok.
