@@ -14,7 +14,6 @@ greenDirectory = projectionDirectory+"/Green/"
 redDirectory = projectionDirectory+"/Red/"
 ratioDirectory=projectionDirectory+"/Ratio/"
 
-
 main();
 
 function main(){
@@ -25,6 +24,21 @@ function main(){
 	MakeRedMontage();
 	MakeGreenMontage();
 	MakeRatioMontage();
+	SaveParameters();
+}
+
+
+function SaveParameters(){
+	tmp = projectionDirectory +"\\Parameters.txt";
+	file = File.open(tmp);
+	print(file,"Starting slice: " + startSlice);
+	print(file,"Ending slice: " + endSlice);
+	print(file,"Projection Type: " + projectionType);
+	print(file,"Rolling Backgroud: " + rollingBackground);
+	print(file,"Contrast Saturation: " + theContrast);
+	print(file,"Contrast Saturation (Ratio): " + theContrastForRatio);
+	File.close(file);
+	
 }
 
 function CreateDirectories(){
@@ -78,12 +92,23 @@ function processStackFile(file) {
 	command = "start=" + startSlice + " stop=" + effectiveEndSlice + " projection="+projectionType;
 	
 	run("Z Project...", command);
+
+	setSlice(1);
 	if(rollingBackground>0){	
 		run("Subtract Background...", "rolling="+rollingBackground);
 	}
 	if(theContrast>0) {	
 		run("Enhance Contrast", "saturated="+theContrast);
 	}
+	setSlice(2);
+	if(rollingBackground>0){	
+		run("Subtract Background...", "rolling="+rollingBackground);
+	}
+	if(theContrast>0) {	
+		run("Enhance Contrast", "saturated="+theContrast);
+	}
+
+	
 	imageTitle = getTitle();
 	saveAs("Tiff", projectionDirectory + File.separator + imageTitle);
 	run("Close All");
@@ -140,7 +165,8 @@ function ProcessProjectionFile(file) {
 	name1 = nameWithoutExtension+"_ch1";
 	name2 = nameWithoutExtension+"_ch2";	
 	print("Projection: " + file);	
-	open(projectionDirectory + File.separator + file);
+	open(projectionDirectory + File.separator + file);	
+	
 	imageTitle = getTitle();
 	run("Duplicate...", "title="+name1+" duplicate channels=1");				
 	saveAs("Tiff", greenDirectory + File.separator + name1 +".tif");
