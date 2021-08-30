@@ -202,10 +202,11 @@ pre code {
 <ol style="list-style-type: decimal">
 <li>Specify the directory in which the stack files are located. This directory must not have a subdirectory called “Projections” located within. If so, rename it.</li>
 <li>Choose the starting and ending slices between which projections will be calculated. They do not need to be adjusted to include all stacks. If ending slice is larger than the number of available slices, the images up to and including the last slice will be used.</li>
-<li>Choose the type of projection that will be used to merge the information in the chosen slices.</li>
-<li>Choose a background rolling window over which a local background correction will be applied. If this is specified as zero, no background subtraction will be applied.</li>
+<li>Choose the type of projection that will be used to merge the information in the chosen slices for the individual channels.</li>
 <li>Choose the percentage of saturated pixels for contrast enhancement for the channels in the stack. If this is specified as zero, no contrast enhancement will be applied.</li>
+<li>Choose the type of projection that will be used to merge the information in the chosen slices for the ratio.</li>
 <li>Choose the percentage of saturated pixels for contrast enhancement specifically for the ratio projection. If this is specified as zero, no contrast enhancement will be applied.</li>
+<li>Choose a background rolling window over which a local background correction will be applied the channel and ratio projections. If this is specified as zero, no background subtraction will be applied.</li>
 <li>Specify the file identifier for the stack files.</li>
 </ol></li>
 <li>Click OK.</li>

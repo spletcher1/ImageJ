@@ -2,10 +2,11 @@
 #@ File (label = "Input directory", style = "directory") inputDir
 #@ Integer (label="Starting slice", style="slider", min=1, max=30, stepSize=1, value=1, persist=false) startSlice
 #@ Integer (label="Ending slice", style="slider", min=1, max=30, stepSize=1, value=30, persist=false) endSlice
-#@ String (choices={"Max", "Average", "Min","Median","Sum"}, style="radioButtonHorizontal") projectionType
-#@ Integer (label="Background rolling", style="slider", min=0, max=200, stepSize=2, value=50, persist=false) rollingBackground
+#@ String (label="Projection type (channel): ", choices={"Max", "Average", "Min","Median","Sum"}, style="radioButtonHorizontal") projectionType
 #@ Float   (label="Enhance contrast (channel)", style="slider", min=0, max=1, stepSize=0.05, value=0.35) theContrast
+#@ String (label="Projection type (ratio): ", choices={"Max", "Average", "Min","Median","Sum"}, style="radioButtonHorizontal") projectionTypeRatio
 #@ Float   (label="Enhance contrast (ratio)", style="slider", min=0, max=1, stepSize=0.05, value=0.2) theContrastForRatio
+#@ Integer (label="Background rolling", style="slider", min=0, max=200, stepSize=2, value=50, persist=false) rollingBackground
 #@ String (label = "Stack file suffix", value = ".oir") suffix
 
 stackDirectory = inputDir;
@@ -64,6 +65,19 @@ function CheckParameters(){
 		projectionType = "[Sum Slices]";
 	else
 		projectionType = "[Max Intensity]";
+
+	if(projectionTypeRatio == "Max")
+		projectionTypeRatio = "[Max Intensity]";
+	else if(projectionTypeRatio == "Average")
+		projectionTypeRatio = "[Average Intensity]";
+	else if(projectionTypeRatio == "Min")
+		projectionTypeRatio = "[Min Intensity]";
+	else if(projectionTypeRatio == "Median")
+		projectionTypeRatio = "Median";
+	else if(projectionTypeRatio == "Sum")
+		projectionTypeRatio = "[Sum Slices]";
+	else
+		projectionTypeRatio = "[Max Intensity]";
 }
 
 
@@ -132,7 +146,7 @@ function processRatioStackFile(file) {
 	run("Ratio Plus", "image1="+c2Title+ " image2=" + c1Title + " background1=10 clipping_value1=20 background2=10 clipping_value2=20 multiplication=2");	
 	close(c1Title);
 	close(c2Title);	
-	command = "start=" + startSlice + " stop=" + effectiveEndSlice + " projection=[Sum Slices]";
+	command = "start=" + startSlice + " stop=" + effectiveEndSlice + " projection="+projectionTypeRatio;	
 	rename(tmpTitle);
 	run("Z Project...", command);
 	if(rollingBackground>0){	

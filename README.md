@@ -24,11 +24,12 @@ In this repository you will find the latest ImageJ scripts used by the Pletcher 
 2. Set the parameters for the analysis. 
     1. Specify the directory in which the stack files are located. This directory must not have a subdirectory called "Projections" located within.  If so, rename it.
     2. Choose the starting and ending slices between which projections will be calculated. They do not need to be adjusted to include all stacks.  If ending slice is larger than the number of available slices, the images up to and including the last slice will be used.
-    3. Choose the type of projection that will be used to merge the information in the chosen slices.
-    4. Choose a background rolling window over which a local background correction will be applied.  If this is specified as zero, no background subtraction will be applied.
-    5. Choose the percentage of saturated pixels for contrast enhancement for the channels in the stack.  If this is specified as zero, no contrast enhancement will be applied.
+    3. Choose the type of projection that will be used to merge the information in the chosen slices for the individual channels.
+    4. Choose the percentage of saturated pixels for contrast enhancement for the channels in the stack.  If this is specified as zero, no contrast enhancement will be applied.
+    5. Choose the type of projection that will be used to merge the information in the chosen slices for the ratio.
     6. Choose the percentage of saturated pixels for contrast enhancement specifically for the ratio projection.  If this is specified as zero, no contrast enhancement will be applied.
-    7. Specify the file identifier for the stack files.
+    7. Choose a background rolling window over which a local background correction will be applied the channel and ratio projections.  If this is specified as zero, no background subtraction will be applied.
+    8. Specify the file identifier for the stack files.
 3. Click OK.
 4. For future reference, the parameter values that you have chosen will be saved in the *Projections/Parameters.txt* file after the script is complete.
     
