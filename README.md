@@ -30,6 +30,7 @@ In this repository you will find the latest ImageJ scripts used by the Pletcher 
     6. Choose the percentage of saturated pixels for contrast enhancement specifically for the ratio projection.  If this is specified as zero, no contrast enhancement will be applied.
     7. Specify the file identifier for the stack files.
 3. Click OK.
+4. For future reference, the parameter values that you have chosen will be saved in the *Projections/Parameters.txt* file after the script is complete.
     
 
 ##### Script Mechanics
@@ -62,6 +63,7 @@ In this repository you will find the latest ImageJ scripts used by the Pletcher 
     
 #### **CaMPARI ROI Analysis Script**
 ##### Usage
+1.  Ensure that the measure results will save the filename and stack position.  Do this by selecting the *Analyze>Set Measurements* menu item and ensuring that the checkboxes associated with "Display label" and "Stack popsition" are checked.
 1.  Open the images that you would like to analyze in ImageJ by highlighting them in windows explorer and dragging the files onto the ImageJ application.  This script will work for single images as well as for files with multiple slices/channels.  
     1. For CaMPARI analysis, you would focus on the files in the "*Projections*" directory to analyze both green and red channels simultaneously.
 2.  Click on the *PletcherLab>Measure On Mouse Click* menu item.
