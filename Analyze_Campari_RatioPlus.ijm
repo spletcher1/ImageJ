@@ -34,9 +34,10 @@ function SaveParameters(){
 	file = File.open(tmp);
 	print(file,"Starting slice: " + startSlice);
 	print(file,"Ending slice: " + endSlice);
-	print(file,"Projection Type: " + projectionType);
+	print(file,"Projection Type (channel): " + projectionType);
+	print(file,"Projection Type (ratio): " + projectionTypeRatio);
 	print(file,"Rolling Backgroud: " + rollingBackground);
-	print(file,"Contrast Saturation: " + theContrast);
+	print(file,"Contrast Saturation (channel): " + theContrast);
 	print(file,"Contrast Saturation (Ratio): " + theContrastForRatio);
 	File.close(file);
 	
